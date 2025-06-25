@@ -18,6 +18,7 @@ function App() {
 
   return (
     <>
+      {/* modal */}
       {openModal && (
         <ResponsiveModal
           open={openModal}
@@ -34,6 +35,7 @@ function App() {
             modalContainer: "flex items-center justify-center min-h-screen",
           }}
         >
+          {/* draggable image */}
           <Draggable bounds="parent">
             <div className="cursor-move">
               {!imageLoaded && <p className="text-center">loading image...</p>}
@@ -51,8 +53,11 @@ function App() {
               />
             </div>
           </Draggable>
+
         </ResponsiveModal>
       )}
+
+      {/* main content */}
       <div className="flex flex-col gap-16 justify-center items-center h-screen">
         <div className="text-center">
           <p>
@@ -63,6 +68,8 @@ function App() {
           </p>
         </div>
         {!imageLoaded && <p className="text-center">loading image...</p>}
+        
+        {/* placeholder image */}
         <img
           src="https://picsum.photos/id/230/200/200"
           alt="this is a placeholder image"
@@ -76,6 +83,7 @@ function App() {
             setImageLoaded(true);
           }}
         />
+
         <div className="text-center flex flex-col gap-2">
           <p className="text-2xl">☝️</p>
           <p className="underline">click on the image to open the modal</p>
