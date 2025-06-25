@@ -4,6 +4,7 @@ import Draggable from "react-draggable";
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleModalOpen = () => {
     console.log("modal opening");
@@ -35,10 +36,18 @@ function App() {
         >
           <Draggable bounds="parent">
             <div className="cursor-move">
+              {!imageLoaded && <p className="text-center">loading image...</p>}
               <img
                 src="https://picsum.photos/id/230/600/300"
                 alt="draggable-image"
                 draggable={false}
+                loading="eager"
+                onError={(e) => {
+                  console.log(e);
+                }}
+                onLoad={() => {
+                  setImageLoaded(true);
+                }}
               />
             </div>
           </Draggable>
@@ -53,12 +62,19 @@ function App() {
             <span className="font-bold underline">react-zoom-pan-pinch</span>
           </p>
         </div>
+        {!imageLoaded && <p className="text-center">loading image...</p>}
         <img
           src="https://picsum.photos/id/230/200/200"
           alt="this is a placeholder image"
           className="rounded-md border-2 border-gray-200 cursor-pointer hover:border-gray-400"
           loading="eager"
           onClick={handleModalOpen}
+          onError={(e) => {
+            console.log(e);
+          }}
+          onLoad={() => {
+            setImageLoaded(true);
+          }}
         />
         <div className="text-center flex flex-col gap-2">
           <p className="text-2xl">☝️</p>
