@@ -5,6 +5,7 @@ import Draggable from "react-draggable";
 function App() {
   const [openModal, setOpenModal] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [modalImageLoaded, setModalImageLoaded] = useState(false);
 
   const handleModalOpen = () => {
     console.log("modal opening");
@@ -27,7 +28,7 @@ function App() {
           center={true}
           closeOnEsc={true}
           classNames={{
-            root: "fixed inset-1",
+            root: "fixed inset-0",
             modal:
               "relative w-[600px] h-[600px] bg-gray-200 flex items-center justify-center rounded-md",
             overlay: "fixed inset-0 bg-black bg-opacity-50",
@@ -38,7 +39,16 @@ function App() {
           {/* draggable image */}
           <Draggable bounds="parent">
             <div className="cursor-move">
-              {!imageLoaded && <p className="text-center">loading image...</p>}
+              {!modalImageLoaded && (
+                <div className="flex items-center justify-center flex-col gap-2">
+                  <p className="text-center text-xl font-bold text-gray-600">
+                    loading image...
+                  </p>
+                  <p className="text-sm text-gray-600 text-center">
+                    this is picsum image do not blame
+                  </p>
+                </div>
+              )}
               <img
                 src="https://picsum.photos/id/230/600/300"
                 alt="draggable-image"
@@ -48,12 +58,24 @@ function App() {
                   console.log(e);
                 }}
                 onLoad={() => {
-                  setImageLoaded(true);
+                  setModalImageLoaded(true);
                 }}
               />
             </div>
           </Draggable>
-
+          
+          {/* controls */}
+          <div className="absolute bottom-[-60px] w-full flex items-center justify-center gap-4">
+            <button className="cursor-pointer text-white border border-white px-4 py-2 rounded-full text-sm hover:bg-white hover:text-black" onClick={() => {}}>
+              zoom-in
+            </button>
+            <button className="cursor-pointer text-white border border-white px-4 py-2 rounded-full text-sm hover:bg-white hover:text-black" onClick={() => {}}>
+              zoom-out
+            </button>
+            <button className="cursor-pointer text-white border border-white px-4 py-2 rounded-full text-sm hover:bg-white hover:text-black" onClick={() => {}}>
+              reset
+            </button>
+          </div>
         </ResponsiveModal>
       )}
 
@@ -68,7 +90,7 @@ function App() {
           </p>
         </div>
         {!imageLoaded && <p className="text-center">loading image...</p>}
-        
+
         {/* placeholder image */}
         <img
           src="https://picsum.photos/id/230/200/200"
