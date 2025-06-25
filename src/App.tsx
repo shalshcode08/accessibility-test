@@ -44,7 +44,15 @@ function App() {
           </Draggable>
         </ResponsiveModal>
       )}
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex flex-col gap-16 justify-center items-center h-screen">
+        <div className="text-center">
+          <p>
+            this is a vite/react app to test{" "}
+            <span className="font-bold underline">react-responsive-modal</span>{" "}
+            & <span className="font-bold underline">react-draggable</span> &{" "}
+            <span className="font-bold underline">react-zoom-pan-pinch</span>
+          </p>
+        </div>
         <img
           src="https://picsum.photos/id/230/200/200"
           alt="this is a placeholder image"
@@ -52,6 +60,10 @@ function App() {
           loading="eager"
           onClick={handleModalOpen}
         />
+        <div className="text-center flex flex-col gap-2">
+          <p className="text-2xl">☝️</p>
+          <p className="underline">click on the image to open the modal</p>
+        </div>
       </div>
     </>
   );
